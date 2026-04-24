@@ -67,41 +67,34 @@ export const HomePage = () => {
           </motion.div>
         </div>
 
-        {/* Right Side: Product Presentation (FIXED ABSOLUTE POSITIONING) */}
-        <div className="md:col-span-6 relative flex items-center justify-center w-full h-[500px] md:h-full mt-12 md:mt-0">
+        {/* Right Side: Product Presentation (LARGE BOTTLE + 3D HOVER) */}
+        <div className="md:col-span-6 relative flex items-center justify-center w-full h-[500px] md:h-full mt-12 md:mt-0" style={{ perspective: "1000px" }}>
           
-          {/* Plinth (The Base) - Centered and pushed slightly down */}
-          <motion.img
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: "-10%", x: "-50%" }}
-            transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
-            src="/travertine-plinth.webp" 
-            alt="Marble Base" 
-            className="absolute top-1/2 left-1/2 w-[60%] md:w-[60%] max-w-[450px] object-contain drop-shadow-xl z-10"
-            style={{ x: "-50%", y: "20%" }} // Base fallback
-          />
-
-          {/* Floating Bottle - Centered and pushed UP to sit on the plinth */}
+          {/* Floating Wrapper - Handles the continuous up/down movement */}
           <motion.div
-            animate={{ y: ["-65%", "-72%", "-65%"], x: "-50%" }} // Floating animation combined with exact placement
+            animate={{ y: ["-45%", "-55%", "-45%"], x: "-50%" }} 
             transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-            className="absolute top-1/2 left-1/2 w-[55%] md:w-[45%] max-w-[280px] z-20"
-            style={{ x: "-50%", y: "-65%" }} // Base fallback placement
+            className="absolute top-1/2 left-1/2 w-[70%] md:w-[70%] max-w-[400px] z-20"
+            style={{ x: "-50%", y: "-50%" }} 
           >
-            <img 
+            {/* Image Element - Handles the 3D rotation on hover */}
+            <motion.img 
+              whileHover={{ rotateY: 360, scale: 1.1 }} 
+              transition={{ duration: 1.2, ease: "easeInOut" }}
               src="/sob-perfume-bottle.webp" 
               alt="SOB ECLAT Prestige" 
-              className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+              className="w-full h-auto object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.4)] cursor-pointer"
               loading="eager" 
+              style={{ transformStyle: "preserve-3d" }}
             />
           </motion.div>
           
-           {/* Dynamic Shadow on top of plinth */}
+           {/* Dynamic Shadow - Re-centered and widened for the larger bottle */}
           <motion.div 
-            animate={{ scale: [1, 0.85, 1], opacity: [0.3, 0.1, 0.3], x: "-50%", y: "-20%" }}
+            animate={{ scale: [1, 0.85, 1], opacity: [0.35, 0.15, 0.35], x: "-50%" }}
             transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-            className="absolute top-1/2 left-1/2 w-32 h-4 bg-black rounded-[50%] blur-md z-[15]"
-            style={{ x: "-50%", y: "-20%" }}
+            className="absolute top-[85%] left-1/2 w-48 h-6 bg-black rounded-[50%] blur-xl z-[15]"
+            style={{ x: "-50%" }}
           />
         </div>
 
@@ -115,6 +108,7 @@ export const HomePage = () => {
     </section>
     <section>
       <ProductGrid />
-    </section> </>
+    </section> 
+    </>
   );
 };
