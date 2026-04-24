@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+/* Yahan hum apni custom SOB theme define kar rahe hain */
+@theme {
+  --color-brand-primary: #000000;
+  --color-brand-secondary: #ffffff;
+  --color-brand-accent: #71717a;
+  --color-surface: #fafafa;
+
+  --font-sans: "Inter", system-ui, sans-serif; /* Geometric sans-serif used in design */
+  --font-display: "Playfair Display", serif; /* Elegant high-contrast serif used in design */
+}
+
+/* Global resets for the minimal aesthetic */
+@layer base {
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 50;
+  }
+}
